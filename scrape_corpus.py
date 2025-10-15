@@ -44,6 +44,8 @@ def process_file(filepath: str, outdir: str, counter: int) -> int:
         # Write to corpus file
         outpath = os.path.join(outdir, f"xfa_{counter:05d}.xfa")
         with open(outpath, "w", encoding="utf-8") as out:
+            while "script" in section:
+                section = section.replace("script", "")
             out.write(section)
         print(f"[+] Extracted XFA -> {outpath}")
         counter += 1
